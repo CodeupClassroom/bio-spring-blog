@@ -1,15 +1,21 @@
 package com.codeup.blog.controllers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class HelloController {
 
     @GetMapping("/hello/{name}") //request
-    @ResponseBody // response
-    public String showAHelloMessage(@PathVariable String name) {
-        return "Hello from " + name; // what I respond with
+    public String showAHelloMessage(@PathVariable String name, Model model) {
+        model.addAttribute("name", name);
+        return "/hello";
+    }
+
+    @GetMapping("/hello")
+    public String showGenericHelloMessage() {
+        return "/hello";
     }
 
     @GetMapping("/create-a-hello")
