@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="partials/head :: head('Roll the Dice')">
     <meta charset="UTF-8">
     <title>Roll the Dice</title>
 </head>
 <body>
-    <h1>Roll the Dice!</h1>
+    <nav th:replace="partials/navbar :: nav"></nav>
+    <header th:replace="partials/header :: header('Roll the Dice!')"></header>
 
     <a th:href="@{/roll-dice/1}">Guess 1</a><br>
     <a th:href="@{/roll-dice/2}">Guess 2</a><br>
@@ -26,5 +27,9 @@
         You didn't guess correctly!
     </h3>
 
+    <footer th:replace="partials/partials :: footer">
+
+    </footer>
+    <th:block th:include="partials/scripts :: scripts"></th:block>
 </body>
 </html>
