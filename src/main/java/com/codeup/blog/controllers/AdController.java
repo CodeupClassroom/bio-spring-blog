@@ -26,10 +26,11 @@ public class AdController {
     }
 
     @GetMapping("/ads/search")
-    @ResponseBody
-    public String search(@RequestParam(name = "term") String term){
-        Ad dbAd = adDao.findByDescription(term);
-        return "ad found with the id " + dbAd.getId();
+    public String search(@RequestParam(name = "term") String term, Model viewModel){
+        term = "%"+term+"%";
+        List<Ad> dbAds = adDao.findAllByTitleIsLike(term);
+        viewModel.addAttribute("ads", dbAds);
+        return "ads/index";
     }
 
     @GetMapping("/ads/{id}")
