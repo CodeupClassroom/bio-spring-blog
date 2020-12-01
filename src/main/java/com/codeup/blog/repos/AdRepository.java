@@ -6,5 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AdRepository extends JpaRepository<Ad, Long> {
-
+    // Query methods
+    Ad findByDescription(String desc); // mysql> select * from ads where description = ?;
 }

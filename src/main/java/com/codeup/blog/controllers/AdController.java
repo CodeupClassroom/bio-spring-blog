@@ -25,6 +25,13 @@ public class AdController {
         return "ads/index";
     }
 
+    @GetMapping("/ads/search")
+    @ResponseBody
+    public String search(@RequestParam(name = "term") String term){
+        Ad dbAd = adDao.findByDescription(term);
+        return "ad found with the id " + dbAd.getId();
+    }
+
     @GetMapping("/ads/{id}")
     public String show(@PathVariable long id, Model model){
         Post post = new Post("Post " + id, "Some cool stuff " + id + ".");
