@@ -20,14 +20,9 @@ public class AdController {
     }
 
     @GetMapping("/ads")
-    public String index(Model model) {
-        List<Post> posts = new ArrayList<>();
-        posts.add(new Post("Post 1", "Some cool stuff 1."));
-        posts.add(new Post("Post 2", "Some cool stuff 2."));
-        posts.add(new Post("Post 3", "Some cool stuff 3."));
-
-        model.addAttribute("posts", posts);
-        return "posts/index";
+    public String index(Model viewModel) {
+        viewModel.addAttribute("ads", adDao.findAll());
+        return "ads/index";
     }
 
     @GetMapping("/ads/{id}")

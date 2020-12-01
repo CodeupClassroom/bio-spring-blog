@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/head :: head('All Ads')">
+    <meta charset="UTF-8">
+</head>
+<body>
+    <nav th:replace="partials/navbar :: nav"></nav>
+    <header th:replace="partials/header :: header('Welcome to the Codeup Blog!')"></header>
+
+    <main class="container">
+        <div class="card" th:each="ad : ${ads}">
+            <h3 class="text-center" th:text="${ad.title}"></h3>
+            <p th:text="${ad.description}"></p>
+        </div>
+    </main>
+
+    <footer th:replace="partials/partials :: footer"></footer>
+    <th:block th:include="partials/scripts :: scripts"></th:block>
+</body>
+</html>
