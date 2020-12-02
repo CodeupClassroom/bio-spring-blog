@@ -34,10 +34,9 @@ public class AdController {
     }
 
     @GetMapping("/ads/{id}")
-    public String show(@PathVariable long id, Model model){
-        Post post = new Post("Post " + id, "Some cool stuff " + id + ".");
-        model.addAttribute("post", post);
-        return "posts/show";
+    public String show(@PathVariable long id, Model viewModel){
+        viewModel.addAttribute("ad", adDao.getOne(id));
+        return "ads/show";
     }
 
     @GetMapping("/ads/create")
@@ -46,14 +45,13 @@ public class AdController {
     }
 
     @PostMapping("/ads/create")
-    @ResponseBody
     public String createAd(
             @RequestParam(name = "title") String title,
             @RequestParam(name = "description") String desc
     ){
         Ad ad = new Ad(title, desc);
         Ad dbAd = adDao.save(ad);
-        return "create a new Ad with the id: " + dbAd.getId();
+        return "redirect:/ads/" + dbAd.getId();
     }
 
     @GetMapping("/ads/{id}/edit")
