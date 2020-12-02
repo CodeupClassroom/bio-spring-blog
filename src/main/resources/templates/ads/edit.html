@@ -15,7 +15,10 @@
         Description:
         <input name="description" th:value="${ad.description}"/>
         <br />
-        <input type="submit" />
+        <input class="btn btn-success" type="submit" />
+    </form>
+    <form th:action="@{/ads/{id}/delete(id=${ad.getId()})}" th:method="post">
+        <button class="btn btn-danger">Delete</button>
     </form>
 
 </main>
