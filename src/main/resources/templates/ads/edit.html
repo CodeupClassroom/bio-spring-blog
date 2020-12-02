@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/head :: head('Create AD')">
+    <meta charset="UTF-8">
+</head>
+<body>
+<nav th:replace="partials/navbar :: nav"></nav>
+<header th:replace="partials/header :: header('Welcome to the Codeup Blog/Adlister!')"></header>
+
+<main class="container">
+    <form th:action="@{/ads/{id}/edit(id=${ad.id})}" th:method="post">
+        Title:
+        <input name="title" id="name-ipt" th:value="${ad.title}"/>
+        <br />
+        Description:
+        <input name="description" th:value="${ad.description}"/>
+        <br />
+        <input class="btn btn-success" type="submit" />
+    </form>
+    <form th:action="@{/ads/{id}/delete(id=${ad.getId()})}" th:method="post">
+        <button class="btn btn-danger">Delete</button>
+    </form>
+
+</main>
+
+<footer th:replace="partials/partials :: footer"></footer>
+<th:block th:include="partials/scripts :: scripts"></th:block>
+</body>
+</html>
