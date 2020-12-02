@@ -55,4 +55,23 @@ public class AdController {
         Ad dbAd = adDao.save(ad);
         return "create a new Ad with the id: " + dbAd.getId();
     }
+
+    @GetMapping("/ads/{id}/edit")
+    public String showEditForm(@PathVariable long id, Model viewModel){
+        viewModel.addAttribute("ad", adDao.getOne(id));
+        return "ads/edit";
+    }
+
+    @PostMapping("/ads/{id}/edit")
+    public String editAd(
+            @PathVariable long id,
+            @RequestParam(name = "title") String title,
+            @RequestParam(name = "description") String desc
+    ){
+        Ad dbAd = adDao.getOne(id);
+        dbAd.setTitle(title);
+        dbAd.setDescription(desc);
+        adDao.save(dbAd);
+        return "redirect:/ads/" + dbAd.getId();
+    }
 }
