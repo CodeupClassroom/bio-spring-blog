@@ -12,6 +12,9 @@
         <div class="card">
             <h2 th:text="${ad.title}"></h2>
             <p th:text="${ad.description}"></p>
+            <div th:each="image: ${ad.images}">
+                <img th:src="${image.path}" >
+            </div>
             <p>Created by: <span th:text="${ad.owner.username}"></span></p>
         </div>
     </main>

@@ -1,6 +1,7 @@
 package com.codeup.blog.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "ads")
@@ -18,21 +19,26 @@ public class Ad {
     @OneToOne
     private User owner;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ad")
+    private List<AdImage> images;
+
     public Ad() {}
 
     // CREATE
-    public Ad(String title, String description, User owner) {
+    public Ad(String title, String description, User owner, List<AdImage> images) {
         this.title = title;
         this.description = description;
         this.owner = owner;
+        this.images = images;
     }
 
     // READ
-    public Ad(long id, String title, String description, User owner) {
+    public Ad(long id, String title, String description, User owner, List<AdImage> images) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.owner = owner;
+        this.images = images;
     }
 
     public long getId() {
@@ -65,5 +71,13 @@ public class Ad {
 
     public void setOwner(User owner) {
         this.owner = owner;
+    }
+
+    public List<AdImage> getImages() {
+        return images;
+    }
+
+    public void setImages(List<AdImage> images) {
+        this.images = images;
     }
 }

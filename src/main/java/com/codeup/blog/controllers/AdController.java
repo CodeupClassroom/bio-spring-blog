@@ -49,7 +49,7 @@ public class AdController {
             @RequestParam(name = "title") String title,
             @RequestParam(name = "description") String desc
     ){
-        Ad ad = new Ad(title, desc, null);
+        Ad ad = new Ad(title, desc, null, null);
         Ad dbAd = adDao.save(ad);
         return "redirect:/ads/" + dbAd.getId();
     }
