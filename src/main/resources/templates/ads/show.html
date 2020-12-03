@@ -12,6 +12,7 @@
         <div class="card">
             <h2 th:text="${ad.title}"></h2>
             <p th:text="${ad.description}"></p>
+            <p>Created by: <span th:text="${ad.owner.username}"></span></p>
         </div>
     </main>
 

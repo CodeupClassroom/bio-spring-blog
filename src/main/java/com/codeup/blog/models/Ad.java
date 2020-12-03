@@ -15,19 +15,24 @@ public class Ad {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String description;
 
+    @OneToOne
+    private User owner;
+
     public Ad() {}
 
     // CREATE
-    public Ad(String title, String description) {
+    public Ad(String title, String description, User owner) {
         this.title = title;
         this.description = description;
+        this.owner = owner;
     }
 
     // READ
-    public Ad(long id, String title, String description) {
+    public Ad(long id, String title, String description, User owner) {
         this.id = id;
         this.title = title;
         this.description = description;
+        this.owner = owner;
     }
 
     public long getId() {
@@ -52,5 +57,13 @@ public class Ad {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
     }
 }
