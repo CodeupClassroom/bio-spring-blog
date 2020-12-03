@@ -12,6 +12,9 @@
         <div class="card">
             <h2 th:text="${ad.title}"></h2>
             <p th:text="${ad.description}"></p>
+            <ul>
+                <li th:each="category: ${ad.categories}" th:text="${category.name}"></li>
+            </ul>
             <div th:each="image: ${ad.images}">
                 <img th:src="${image.path}" >
             </div>
