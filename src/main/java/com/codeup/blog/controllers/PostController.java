@@ -52,12 +52,10 @@ public class PostController {
     }
 
     @PostMapping("/posts/{id}/edit")
-    public String updatePost(@PathVariable long id, @RequestParam String title, @RequestParam String body) {
-        Post post = postDao.getOne(id);
-        post.setTitle(title);
-        post.setBody(body);
-
-        postDao.save(post);
+    public String updatePost(@ModelAttribute Post postToBeUpdated) {
+        User user = userDao.getOne(1L); // a user obj coming from a session
+        postToBeUpdated.setOwner(user);
+        postDao.save(postToBeUpdated);
         return "redirect:/posts";
     }
 
