@@ -9,12 +9,12 @@
 
 <main class="container">
 
-    <form th:action="@{/ads/create}" th:method="post">
+    <form th:action="@{/ads/create}" th:method="post" th:object="${ad}">
         Title:
-        <input name="title" id="name-ipt"/>
+        <input th:field="*{title}"/>
         <br />
         Description:
-        <input name="description" />
+        <input th:field="*{description}" />
         <br />
         <input type="submit" />
     </form>
