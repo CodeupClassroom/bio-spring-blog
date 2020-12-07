@@ -17,10 +17,15 @@
                 <a class="nav-link text-light" th:href="@{/posts/create}">Create Posts</a>
             </li>
             <li class="nav-item ml-auto">
-                <a class="nav-link text-light" th:href="@{/register}">Register</a>
+                <a class="nav-link text-light" th:href="@{/sign-up}">Register</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-light" th:href="@{/login}">Login</a>
+            </li>
+            <li class="nav-item">
+                <form th:action="@{/logout}" th:method="post">
+                    <button class="btn-link btn" style="margin-top: 8px">Logout</button>
+                </form>
             </li>
         </ul>
     </nav>

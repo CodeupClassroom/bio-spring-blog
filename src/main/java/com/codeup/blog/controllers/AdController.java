@@ -6,6 +6,7 @@ import com.codeup.blog.models.User;
 import com.codeup.blog.repos.AdRepository;
 import com.codeup.blog.repos.UserRepository;
 import com.codeup.blog.services.EmailService;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -54,7 +55,7 @@ public class AdController {
 
     @PostMapping("/ads/create")
     public String createAd(@ModelAttribute Ad adToBeSaved){
-        User userDb = userDao.getOne(1L);
+        User userDb = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         adToBeSaved.setOwner(userDb);
         Ad dbAd = adDao.save(adToBeSaved);
         emailService.prepareAndSend(dbAd, "Ad has been created", "You can find it with the id of " + dbAd.getId());
