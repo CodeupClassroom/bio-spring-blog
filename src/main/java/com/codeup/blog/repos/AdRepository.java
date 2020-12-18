@@ -11,4 +11,5 @@ public interface AdRepository extends JpaRepository<Ad, Long> {
     // Query methods
     Ad findByDescription(String desc); // mysql> select * from ads where description = ?;
     List<Ad> findAllByTitleIsLike(String term);
+    Ad findByTitle(String title);
 }
